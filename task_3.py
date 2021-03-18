@@ -1,8 +1,8 @@
 import shutil
 import os
 
-for main_dir, dirs, files in os.walk("my_project"):
-    for s_file in files:
-        if s_file.endswith(".html"):
-            print(os.path.abspath(s_file))
-#          shutil.copytree(main_dir, os.path.join(os.path.dirname(main_dir), r"templates"))
+root_dir = 'my_project'
+find_dir = 'templates'
+for main_dir, dirs, files in os.walk(root_dir):
+    if main_dir.find(find_dir) > 0 and len(files) == 0:
+        shutil.copytree(os.path.join(main_dir), find_dir, dirs_exist_ok=True)
